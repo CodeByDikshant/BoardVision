@@ -1,0 +1,18 @@
+chess-eye/
+│
+├── models/                # Folder for ML models (.h5, .pth, etc.)
+│
+├── data/                  # Folder to keep sample images or datasets
+│
+├── src/                   # Source code files
+│   ├── chessboard_detection.py
+│   ├── segment_squares.py
+│   ├── piece_classification.py
+│   ├── fen_builder.py
+│   └── stockfish_integration.py
+│
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── main.py                # Main script to run the pipeline
