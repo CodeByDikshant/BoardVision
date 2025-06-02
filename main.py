@@ -1,6 +1,10 @@
 import argparse
 from src.chessboard_detection import detect_chessboard
+from src.segment_squares import segment_board
+from src.piece_classification import classify_squares
+from src.fen_builder import build_fen
 from src.stockfish_integration import suggest_best_move
+import cv2
 
 def main():
     parser = argparse.ArgumentParser(description="ChessEye - Chessboard AI")
@@ -13,8 +17,11 @@ def main():
         print("Failed to detect chessboard.")
         return
 
-    # TODO: Add segmentation, classification, FEN builder here
-    fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    squares = segment_board(warped_board)
+    piece_classes = classify_squares(squares)
+    fen = build_fen(piece_classes)
+
+    print(f"Detected FEN: {fen}")
 
     best_move = suggest_best_move(fen, args.stockfish)
     print(f"Suggested best move: {best_move}")
